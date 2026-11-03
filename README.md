@@ -56,3 +56,10 @@ The trade-off here is scope: this library handles attribute TLV framing and the 
 ## Tests
 
 `node --test` from the project root. All tests are deterministic and use no wall-clock time.
+
+## Performance
+
+The window keeps a bounded buffer, so `push` is constant time and memory does not
+grow with the length of the stream. `peak` and `trough` are linear in the window
+size, which is the trade that keeps `push` cheap.
+
